@@ -76,6 +76,16 @@ namespace ADO
 		{
 			return GetMaxPrimaryKey(table) +1;
 		}
+		public string GetPrimaryKeyColumnName(string table)
+		{
+			//string raw = @"RAW string"; // RAW - строка игнорирует переносы
+			string cmd = $@"SELECT INFORMATION_SCHEMA.KEY_COLUMN_USAGE.COLUMN_NAME
+FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
+WHERE TABLE_NAME = N'{table}'
+AND CONSTRAINT_NAME LIKE N'PK_%'";
+
+			return (string)Scalar(cmd);
+		}
 		public void Insert(string cmd)
 		{
 			SqlCommand command = new SqlCommand (cmd, connection);
@@ -95,6 +105,27 @@ namespace ADO
 			}
 			
 			connection.Close ();
+		}
+		public void Insert(string table, string fields,string values)
+		{
+			string condition = "";
+			string[] s_fields = fields.Split(',');
+			string[] s_values = values.Split(',');
+			string parsed_values = $"N'{s_values[0]}',";
+			for(int i=1; i < s_fields.Length;++i)
+			{
+				condition += $" {s_fields[i]}=N'{s_values[i]}' ";
+				parsed_values += s_values[i][0] != 'N' && s_values[i][1] != '\'' ? $"N'{s_values[i]}'" : s_values[i];
+				if (i != s_fields.Length - 1)
+				{
+					condition += "AND";
+					parsed_values += ",";
+				}
+				
+			}
+			string cmd = $"IF NOT EXISTS (SELECT {GetPrimaryKeyColumnName(table)} FROM {table} WHERE {condition})";
+			cmd += $"INSERT {table} ({fields}) VALUES ({parsed_values})";
+			Insert(cmd);
 		}
 		
 	}
