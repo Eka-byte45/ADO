@@ -36,6 +36,8 @@
 			this.tabPageDisciplines = new System.Windows.Forms.TabPage();
 			this.tabPageTeachers = new System.Windows.Forms.TabPage();
 			this.dgvDirections = new System.Windows.Forms.DataGridView();
+			this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+			this.statusStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.tabPageDirections.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvDirections)).BeginInit();
@@ -43,6 +45,8 @@
 			// 
 			// statusStrip
 			// 
+			this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel});
 			this.statusStrip.Location = new System.Drawing.Point(0, 428);
 			this.statusStrip.Name = "statusStrip";
 			this.statusStrip.Size = new System.Drawing.Size(800, 22);
@@ -126,6 +130,12 @@
 			this.dgvDirections.Size = new System.Drawing.Size(781, 373);
 			this.dgvDirections.TabIndex = 0;
 			// 
+			// toolStripStatusLabel
+			// 
+			this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+			this.toolStripStatusLabel.Size = new System.Drawing.Size(118, 17);
+			this.toolStripStatusLabel.Text = "toolStripStatusLabel1";
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -135,6 +145,8 @@
 			this.Controls.Add(this.statusStrip);
 			this.Name = "MainForm";
 			this.Text = "AcadamyPV_521";
+			this.statusStrip.ResumeLayout(false);
+			this.statusStrip.PerformLayout();
 			this.tabControl.ResumeLayout(false);
 			this.tabPageDirections.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dgvDirections)).EndInit();
@@ -153,6 +165,7 @@
 		private System.Windows.Forms.DataGridView dgvDirections;
 		private System.Windows.Forms.TabPage tabPageDisciplines;
 		private System.Windows.Forms.TabPage tabPageTeachers;
+		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
 	}
 }
 
