@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace DBtools
 {
@@ -19,8 +20,9 @@ namespace DBtools
 			connection = new SqlConnection(connection_string);
 		}
 
-		public void Select(string cmd)
+		public DataTable Select(string cmd)
 		{
+			DataTable table = new DataTable();
 			connection.Open();//Открываем соединение с  базой данных
 			SqlCommand command = new SqlCommand(cmd, connection);//Создание комманды SQL-запроса, привязываем к открытому соединению
 			SqlDataReader reader = command.ExecuteReader();//Выполнение запроса и получение результирующего набора данных
@@ -28,29 +30,34 @@ namespace DBtools
 			for (int i = 0; i < reader.FieldCount; ++i)
 			{
 				Console.Write(reader.GetName(i) + "\t");//Печатаем имена колонок через табуляцию
+				table.Columns.Add(reader.GetName(i));
 			}
 			Console.WriteLine();
 			// Читаем данные построчно из полученного набора результатов
 			while (reader.Read())//пока есть доступные записи
 			{
+				DataRow row = table.NewRow();
 				//Console.WriteLine($"{reader[0]}\t{reader[1]}\t{reader[2]}\t{reader[3]}");
 				// Перебираем поля текущего ряда и печатаем значения колонок
 				for (int i = 0; i < reader.FieldCount; ++i)
 				{
 					Console.Write($"{reader[i]}\t\t"); // Значения колонок выводятся через двойную табуляцию
+					row[i] = reader[i];
 				}
 				Console.WriteLine();
+				table.Rows.Add(row);
 			}
 			// Завершаем работу с набором данных и закрываем его
 			reader.Close();
 			connection.Close();
+			return table;
 		}
-		public void Select(string fields, string tables, string condition = "")
+		public DataTable Select(string fields, string tables, string condition = "")
 		{
 			string cmd = $"SELECT {fields} FROM {tables}";
 			if (condition != "") cmd += $" WHERE {condition}";
 			cmd += ";";
-			Select(cmd);
+			return Select(cmd);
 		}
 
 		public object Scalar(string cmd)
