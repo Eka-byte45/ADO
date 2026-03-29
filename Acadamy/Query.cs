@@ -20,7 +20,7 @@ namespace Acadamy
 		public override string ToString()
 		{
 			string query = $"SELECT {Fields} FROM {Tables}";
-			if (Condition != "") query += $"WHERE {Condition}";
+			if (Condition != "") query += $" WHERE {Condition}";
 			return query;
 		}
 	}
