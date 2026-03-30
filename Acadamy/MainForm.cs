@@ -30,7 +30,10 @@ namespace Acadamy
 			new Query("*","Directions"),
 			new Query("*","Disciplines"),
 			new Query("*","Teachers"),
-			
+			new Query("discipline_name,last_name",
+				"Teachers,TeachersDisciplinesRelation, Disciplines",
+				"teacher=teacher_id AND discipline=discipline_id",
+				"discipline_name")
 		};
 		string[] status_messages = 
 			{
@@ -155,14 +158,14 @@ namespace Acadamy
 
 			if (disciplineId == 0)
 			{
-				dgvTeachers.DataSource = connector.Select("*","Teachers");
+				dgvTeachers.DataSource = connector.Select(queries[4].ToString());
 			}
 			else
 			{
-				dgvTeachers.DataSource = connector.Select("*", "Teachers", $"teacher_id IN (SELECT teacher FROM TeachersDisciplinesRelation WHERE discipline = {disciplineId})");
+				dgvTeachers.DataSource = connector.Select(queries[5].ToString());
 			}
 
-			toolStripStatusLabel.Text = $"{status_messages[4]}: {dgvTeachers.RowCount - 1}";
+			//toolStripStatusLabel.Text = $"{status_messages[4]}: {dgvTeachers.RowCount - 1}";
 		}
 		private void LoadDirectionsForStudentFilter()
 		{
