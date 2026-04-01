@@ -12,7 +12,7 @@ namespace DBtools
     public class Connector
     {
 		string connection_string;
-		SqlConnection connection;
+		public SqlConnection connection;
 		public Connector(string connection_string)
 		{
 			Console.WriteLine(connection_string);//Выводим строку подключения к локальной базе данных на консоль
@@ -150,6 +150,8 @@ AND CONSTRAINT_NAME LIKE N'PK_%'";
 			string cmd = $"IF NOT EXISTS (SELECT {GetPrimaryKeyColumnName(table)} FROM {table} WHERE {condition})";
 			cmd += $"INSERT {table} ({fields}) VALUES ({parsed_values})";
 			Insert(cmd);
+			
 		}
+
 	}
 }
