@@ -73,14 +73,23 @@ namespace Acadamy
 
 		private void cbGroupsDirection_SelectedIndexChanged(object sender, EventArgs e)
 		{
+			
 			dgvGroups.DataSource = connector.Select(queries[1].ToString() + $" AND direction={d_directions[cbGroupsDirection.SelectedItem.ToString()]}");
 			toolStripStatusLabel.Text = $"{status_messages[1]}: {dgvGroups.RowCount - 1}";
 		}
 
 		private void cbStudentsDirection_SelectedIndexChanged(object sender, EventArgs e)
 		{
-
-			dgvStudents.DataSource = connector.Select(queries[0].ToString() + $" AND direction={d_directions[cbStudentsDirection.SelectedItem.ToString()]}");
+			d_groups = connector.GetDictionary
+				("Groups", 
+				$"direction={d_directions[cbStudentsDirection.SelectedItem.ToString()]}"
+				);
+			cbStudentsGroup.Items.Clear();
+			cbStudentsGroup.Items.AddRange(d_groups.Keys.ToArray());
+			dgvStudents.DataSource = connector.Select
+				(
+				queries[0].ToString() +
+				$" AND direction={d_directions[cbStudentsDirection.SelectedItem.ToString()]}");
 			toolStripStatusLabel.Text = $"{status_messages[0]}: {dgvStudents.RowCount - 1}";
 		}
 	}

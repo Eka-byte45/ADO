@@ -52,10 +52,11 @@ namespace DBtools
 			connection.Close();
 			return table;
 		}
-		public Dictionary<string,int> GetDictionary(string table)
+		public Dictionary<string,int> GetDictionary(string table,string condition ="")
 		{
 			Dictionary<string,int> dictionary = new Dictionary<string, int> ();
 			string cmd = $"SELECT {table.Substring(0, table.Length - 1)}_name,{table.Substring(0, table.Length - 1)}_id FROM {table}";
+			if (condition != "") cmd += $" WHERE {condition}";
 			SqlCommand command = new SqlCommand(cmd, connection);
 			connection.Open();
 			SqlDataReader reader = command.ExecuteReader();
