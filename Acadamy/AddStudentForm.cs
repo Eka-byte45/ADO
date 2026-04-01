@@ -28,6 +28,7 @@ namespace Acadamy
 			//this.d_groups = groupsDict;
 			d_groups = connector.GetDictionary("Groups");
 			cbGroup.Items.AddRange(d_groups.Keys.ToArray());
+			btnSave.Click += new EventHandler(btnSave_Click);
 		}
 
 		private void btnSave_Click(object sender, EventArgs e)
