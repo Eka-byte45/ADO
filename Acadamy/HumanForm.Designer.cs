@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HumanForm));
 			this.labelLastName = new System.Windows.Forms.Label();
 			this.labelFirstName = new System.Windows.Forms.Label();
 			this.labelMiddleName = new System.Windows.Forms.Label();
@@ -98,7 +97,6 @@
 			this.tbLastName.Name = "tbLastName";
 			this.tbLastName.Size = new System.Drawing.Size(227, 31);
 			this.tbLastName.TabIndex = 4;
-			this.tbLastName.TextChanged += new System.EventHandler(this.tbLastName_TextChanged);
 			// 
 			// tbFirstName
 			// 
@@ -134,14 +132,14 @@
 			// 
 			// pbPhoto
 			// 
-			this.pbPhoto.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbPhoto.BackgroundImage")));
+			this.pbPhoto.BackColor = System.Drawing.SystemColors.ControlDark;
 			this.pbPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.pbPhoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.pbPhoto.Location = new System.Drawing.Point(487, 31);
 			this.pbPhoto.Name = "pbPhoto";
 			this.pbPhoto.Size = new System.Drawing.Size(210, 257);
 			this.pbPhoto.TabIndex = 8;
 			this.pbPhoto.TabStop = false;
-			this.pbPhoto.Click += new System.EventHandler(this.pictureBox1_Click);
 			// 
 			// buttonbrowse
 			// 
@@ -152,7 +150,6 @@
 			this.buttonbrowse.TabIndex = 9;
 			this.buttonbrowse.Text = "Обзор";
 			this.buttonbrowse.UseVisualStyleBackColor = true;
-			this.buttonbrowse.Click += new System.EventHandler(this.buttonbrowse_Click);
 			// 
 			// tbEmail
 			// 
@@ -175,7 +172,6 @@
 			this.tbPhone.Name = "tbPhone";
 			this.tbPhone.Size = new System.Drawing.Size(227, 31);
 			this.tbPhone.TabIndex = 11;
-			this.tbPhone.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
 			// 
 			// labelEmail
 			// 
@@ -207,6 +203,7 @@
 			this.buttonOk.TabIndex = 14;
 			this.buttonOk.Text = "OK";
 			this.buttonOk.UseVisualStyleBackColor = true;
+			this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
 			// 
 			// buttonCancel
 			// 
@@ -241,9 +238,10 @@
 			this.Controls.Add(this.labelFirstName);
 			this.Controls.Add(this.labelLastName);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "HumanForm";
 			this.Text = "HumanForm";
-			this.Load += new System.EventHandler(this.HumanForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.pbPhoto)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -256,17 +254,17 @@
 		private System.Windows.Forms.Label labelFirstName;
 		private System.Windows.Forms.Label labelMiddleName;
 		private System.Windows.Forms.Label labelBirthDate;
-		private System.Windows.Forms.TextBox tbLastName;
-		private System.Windows.Forms.TextBox tbFirstName;
-		private System.Windows.Forms.TextBox tbMiddleName;
-		private System.Windows.Forms.DateTimePicker dtpBirthDate;
-		private System.Windows.Forms.PictureBox pbPhoto;
 		private System.Windows.Forms.Button buttonbrowse;
-		private System.Windows.Forms.TextBox tbEmail;
-		private System.Windows.Forms.TextBox tbPhone;
 		private System.Windows.Forms.Label labelEmail;
 		private System.Windows.Forms.Label labelPhone;
 		private System.Windows.Forms.Button buttonOk;
 		private System.Windows.Forms.Button buttonCancel;
+		protected System.Windows.Forms.TextBox tbLastName;
+		protected System.Windows.Forms.TextBox tbFirstName;
+		protected System.Windows.Forms.TextBox tbMiddleName;
+		protected System.Windows.Forms.DateTimePicker dtpBirthDate;
+		protected System.Windows.Forms.PictureBox pbPhoto;
+		protected System.Windows.Forms.TextBox tbEmail;
+		protected System.Windows.Forms.TextBox tbPhone;
 	}
 }

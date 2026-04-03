@@ -7,39 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Configuration;
 namespace Acadamy
 {
-	public partial class HumanForm : Form
+	public abstract partial class HumanForm : Form
 	{
+		//static protected DBtools.Connector connector;
 		public HumanForm()
 		{
 			InitializeComponent();
+			//connector = new DBtools.Connector(ConfigurationManager.ConnectionStrings["PV_521_Import"].ConnectionString);
 		}
 
-		private void HumanForm_Load(object sender, EventArgs e)
-		{
-
-		}
-
-		private void tbLastName_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void pictureBox1_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void buttonbrowse_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void textBox1_TextChanged(object sender, EventArgs e)
-		{
-
-		}
+		protected abstract void buttonOk_Click(object sender, EventArgs e);
+		
 	}
 }
