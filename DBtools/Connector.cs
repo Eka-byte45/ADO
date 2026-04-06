@@ -153,5 +153,26 @@ AND CONSTRAINT_NAME LIKE N'PK_%'";
 			cmd += $"INSERT {table} ({fields}) VALUES ({parsed_values})";
 			Insert(cmd);
 		}
+
+		public void Update(string table, string setValues, string whereCondition)
+		{
+			string cmd = $"UPDATE {table} SET {setValues} WHERE {whereCondition}";
+			SqlCommand command = new SqlCommand(cmd, connection);
+			connection.Open();
+			try
+			{
+				command.ExecuteNonQuery();
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.GetType());
+				Console.WriteLine(ex.Message);
+				
+			}
+			finally
+			{
+				connection.Close();
+			}
+		}
 	}
 }
