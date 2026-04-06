@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Configuration;
 namespace Acadamy
 {
-	public abstract partial class HumanForm : Form
+	public partial class HumanForm : Form
 	{
 		//static protected DBtools.Connector connector;
 		public HumanForm()
@@ -19,7 +19,7 @@ namespace Acadamy
 			//connector = new DBtools.Connector(ConfigurationManager.ConnectionStrings["PV_521_Import"].ConnectionString);
 		}
 
-		protected abstract void buttonOk_Click(object sender, EventArgs e);
+		protected virtual void buttonOk_Click(object sender, EventArgs e) { }
 		
 	}
 }
