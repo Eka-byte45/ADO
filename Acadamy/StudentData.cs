@@ -14,7 +14,9 @@ namespace Acadamy
 		public DateTime BirthDate { get; set; }
 		public string Email { get; set; }
 		public string Phone { get; set; }
+		public byte[] Photo { get; set; }
 		public int GroupId { get; set; }
+
 
 	}
 }

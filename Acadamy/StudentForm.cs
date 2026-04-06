@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,7 +51,20 @@ namespace Acadamy
 			dtpBirthDate.Value = data.BirthDate;
 			tbEmail.Text = data.Email;
 			tbPhone.Text = data.Phone;
-
+			if (data.Photo != null && data.Photo.Length > 0)
+			{
+				
+				using (MemoryStream ms = new MemoryStream(data.Photo))
+				{
+					
+					pbPhoto.Image = Image.FromStream(ms);
+				}
+			}
+			else
+			{
+				
+				pbPhoto.Image = null; 
+			}
 			cbGroup.SelectedValue = data.GroupId;
 		}
 		protected override void buttonOk_Click(object sender, EventArgs e)
@@ -62,6 +76,17 @@ namespace Acadamy
 			DateTime birthDate = dtpBirthDate.Value;
 			string email = tbEmail.Text.Trim();
 			string phone = tbPhone.Text.Trim();
+
+			byte[] photoBytes = null;
+			if (pbPhoto.Image != null)
+			{
+				using (var ms = new MemoryStream())
+				{
+					
+					pbPhoto.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+					photoBytes = ms.ToArray();
+				}
+			}
 
 			if (string.IsNullOrWhiteSpace(lastName) || string.IsNullOrWhiteSpace(firstName))
 			{
