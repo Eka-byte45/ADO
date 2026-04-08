@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acadamy.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,7 +30,16 @@ namespace Acadamy
 			cbGroup.DisplayMember = "group_name";
 			cbGroup.ValueMember = "group_id";
 		}
-		
+		public StudentForm(int id):this()
+		{
+			DataTable data = DataBase.Connector.Select("*", "Students", $"stud_id ={id}");
+			//object[] arr = data.Rows[0].ItemArray;
+			student = new Models.Student(data.Rows[0].ItemArray);
+			human = student;
+			Extract();
+			cbGroup.SelectedValue = student.group;
+			
+		}
 		protected override void buttonOk_Click(object sender, EventArgs e)
 		{
 			base.buttonOk_Click(sender, e);
