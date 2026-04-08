@@ -31,19 +31,35 @@ namespace Acadamy
 		
 		protected override void buttonOk_Click(object sender, EventArgs e)
 		{
-			try
-			{
-				DataBase.Connector.Insert
-						(
-						"Students",
-						"last_name,first_name,middle_name,birth_date,email,phone,[group]",
-						$"{tbLastName.Text},{tbFirstName.Text},{tbMiddleName.Text},{dtpBirthDate.Value.ToString("yyyy-MM-dd")},{tbEmail.Text},{tbPhone.Text},{cbGroup.SelectedValue}"
-						);
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK);
-			}
+			Models.Student student = new Models.Student
+				(
+					tbLastName.Text,
+					tbFirstName.Text,
+					tbMiddleName.Text,
+					dtpBirthDate.Value.ToString("yyyy-MM-dd"),
+					tbEmail.Text,
+					tbPhone.Text,
+					pbPhoto.Image,
+					Convert.ToInt32(cbGroup.SelectedValue)
+				);
+			DataBase.Connector.Insert("Students", $"{student.GetNames()}",$"{student.GetValues()}");
+			//try
+			//{
+			//	DataBase.Connector.Insert
+			//			(
+			//			"Students",
+			//			"last_name,first_name,middle_name,birth_date,email,phone,[group]",
+			//			$"{tbLastName.Text},{tbFirstName.Text},{tbMiddleName.Text},{dtpBirthDate.Value.ToString("yyyy-MM-dd")},{tbEmail.Text},{tbPhone.Text},{cbGroup.SelectedValue}"
+			//			);
+			//}
+			//catch (Exception ex)
+			//{
+			//	MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK);
+			//}
+
+			
 		}
+
+
 	}
 }
