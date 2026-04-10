@@ -9,7 +9,7 @@ namespace Acadamy.Models
 	internal class Student : Human
 	{
 		internal int group;
-		public Student(string last_name, string first_name, string middle_name, string birth_date, string email, string phone, Image photo,int group):base(last_name,first_name,middle_name,birth_date,email,phone,photo)
+		public Student(int id, string last_name, string first_name, string middle_name, string birth_date, string email, string phone, Image photo,int group):base(id,last_name,first_name,middle_name,birth_date,email,phone,photo)
 		{
 			this.group = group;
 		}
@@ -29,6 +29,14 @@ namespace Acadamy.Models
 		public override string GetValues()
 		{
 			return $"{base.GetValues()},{group}";
+		}
+		public override string GetCondition()
+		{
+			return base.GetCondition() + $" AND [group] = {group}";
+		}
+		public string GetUpdateString()
+		{
+			return GetCondition().Replace(" AND ", ",");
 		}
 	}
 }
