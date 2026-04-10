@@ -139,6 +139,7 @@
 			this.pbPhoto.Location = new System.Drawing.Point(487, 31);
 			this.pbPhoto.Name = "pbPhoto";
 			this.pbPhoto.Size = new System.Drawing.Size(210, 257);
+			this.pbPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pbPhoto.TabIndex = 8;
 			this.pbPhoto.TabStop = false;
 			// 
@@ -151,6 +152,7 @@
 			this.buttonbrowse.TabIndex = 9;
 			this.buttonbrowse.Text = "Обзор";
 			this.buttonbrowse.UseVisualStyleBackColor = true;
+			this.buttonbrowse.Click += new System.EventHandler(this.buttonbrowse_Click);
 			// 
 			// tbEmail
 			// 

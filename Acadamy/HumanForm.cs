@@ -48,6 +48,13 @@ namespace Acadamy
 			pbPhoto.Image
 			);
 		}
-		
+
+		private void buttonbrowse_Click(object sender, EventArgs e)
+		{
+			OpenFileDialog dialog = new OpenFileDialog();
+			dialog.Filter = "JPG files (*.jpg)|*.jpg|PNG fiels (*.png)|*.png|All image files|*.png;*.jpg|ALL files (*.*)|*.*";
+			if(dialog.ShowDialog() == DialogResult.OK)
+				pbPhoto.Image = Image.FromFile(dialog.FileName);
+		}
 	}
 }
