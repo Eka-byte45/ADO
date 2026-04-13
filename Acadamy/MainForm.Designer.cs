@@ -45,6 +45,7 @@
 			this.dgvDisciplines = new System.Windows.Forms.DataGridView();
 			this.tabPageTeachers = new System.Windows.Forms.TabPage();
 			this.dgvTeachers = new System.Windows.Forms.DataGridView();
+			this.btnAddTeacher = new System.Windows.Forms.Button();
 			this.statusStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.tabPageStudents.SuspendLayout();
@@ -234,6 +235,7 @@
 			// 
 			// tabPageTeachers
 			// 
+			this.tabPageTeachers.Controls.Add(this.btnAddTeacher);
 			this.tabPageTeachers.Controls.Add(this.dgvTeachers);
 			this.tabPageTeachers.Location = new System.Drawing.Point(4, 22);
 			this.tabPageTeachers.Name = "tabPageTeachers";
@@ -250,10 +252,20 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.dgvTeachers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.dgvTeachers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvTeachers.Location = new System.Drawing.Point(6, 15);
+			this.dgvTeachers.Location = new System.Drawing.Point(6, 29);
 			this.dgvTeachers.Name = "dgvTeachers";
-			this.dgvTeachers.Size = new System.Drawing.Size(781, 373);
+			this.dgvTeachers.Size = new System.Drawing.Size(781, 359);
 			this.dgvTeachers.TabIndex = 1;
+			// 
+			// btnAddTeacher
+			// 
+			this.btnAddTeacher.Location = new System.Drawing.Point(700, 3);
+			this.btnAddTeacher.Name = "btnAddTeacher";
+			this.btnAddTeacher.Size = new System.Drawing.Size(75, 23);
+			this.btnAddTeacher.TabIndex = 2;
+			this.btnAddTeacher.Text = "Добавить";
+			this.btnAddTeacher.UseVisualStyleBackColor = true;
+			this.btnAddTeacher.Click += new System.EventHandler(this.btnAddTeacher_Click);
 			// 
 			// MainForm
 			// 
@@ -301,6 +313,7 @@
 		private System.Windows.Forms.ComboBox cbStudentsDirection;
 		private System.Windows.Forms.ComboBox cbStudentsGroup;
 		private System.Windows.Forms.Button buttonAddStudent;
+		private System.Windows.Forms.Button btnAddTeacher;
 	}
 }
 

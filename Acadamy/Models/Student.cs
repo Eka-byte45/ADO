@@ -34,9 +34,9 @@ namespace Acadamy.Models
 		{
 			return base.GetCondition() + $" AND [group] = {group}";
 		}
-		public string GetUpdateString()
-		{
-			return GetCondition().Replace(" AND ", ",");
-		}
+		//public string GetUpdateString()
+		//{
+		//	return GetCondition().Replace(" AND ", ",");
+		//}
 	}
 }
