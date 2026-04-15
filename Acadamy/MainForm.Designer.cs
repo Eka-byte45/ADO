@@ -44,8 +44,8 @@
 			this.tabPageDisciplines = new System.Windows.Forms.TabPage();
 			this.dgvDisciplines = new System.Windows.Forms.DataGridView();
 			this.tabPageTeachers = new System.Windows.Forms.TabPage();
-			this.dgvTeachers = new System.Windows.Forms.DataGridView();
 			this.btnAddTeacher = new System.Windows.Forms.Button();
+			this.dgvTeachers = new System.Windows.Forms.DataGridView();
 			this.statusStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.tabPageStudents.SuspendLayout();
@@ -245,18 +245,6 @@
 			this.tabPageTeachers.Text = "Teachers";
 			this.tabPageTeachers.UseVisualStyleBackColor = true;
 			// 
-			// dgvTeachers
-			// 
-			this.dgvTeachers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.dgvTeachers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-			this.dgvTeachers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvTeachers.Location = new System.Drawing.Point(6, 29);
-			this.dgvTeachers.Name = "dgvTeachers";
-			this.dgvTeachers.Size = new System.Drawing.Size(781, 359);
-			this.dgvTeachers.TabIndex = 1;
-			// 
 			// btnAddTeacher
 			// 
 			this.btnAddTeacher.Location = new System.Drawing.Point(700, 3);
@@ -266,6 +254,24 @@
 			this.btnAddTeacher.Text = "Добавить";
 			this.btnAddTeacher.UseVisualStyleBackColor = true;
 			this.btnAddTeacher.Click += new System.EventHandler(this.btnAddTeacher_Click);
+			// 
+			// dgvTeachers
+			// 
+			this.dgvTeachers.AllowUserToAddRows = false;
+			this.dgvTeachers.AllowUserToDeleteRows = false;
+			this.dgvTeachers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.dgvTeachers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.dgvTeachers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvTeachers.Location = new System.Drawing.Point(6, 29);
+			this.dgvTeachers.MultiSelect = false;
+			this.dgvTeachers.Name = "dgvTeachers";
+			this.dgvTeachers.ReadOnly = true;
+			this.dgvTeachers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.dgvTeachers.Size = new System.Drawing.Size(781, 359);
+			this.dgvTeachers.TabIndex = 1;
+			this.dgvTeachers.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTeachers_CellMouseDoubleClick);
 			// 
 			// MainForm
 			// 

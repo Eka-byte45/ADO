@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acadamy.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,7 +18,21 @@ namespace Acadamy
 		{
 			InitializeComponent();
 		}
+		public TeacherForm(int id) : this()
+		{
+			DataTable data = DataBase.Connector.Select("*", "Teachers", $"teacher_id ={id}");
+																						  
+			teacher = new Models.Teacher(data.Rows[0].ItemArray);
+			teacher.work_since = data.Rows[0].ItemArray[8].ToString();
+			teacher.rate = Convert.ToDecimal(data.Rows[0].ItemArray[9]);
+			
+			human = teacher;
+			Extract();
+			dtpWorkSince.Text = teacher.work_since;
+			tbRate.Text = teacher.rate.ToString();
+			pbPhoto.Image = DataBase.Connector.DownladPhoto("Teachers", "photo", teacher.id);
 
+		}
 		protected override void buttonOk_Click(object sender, EventArgs e)
 		{
 			base.buttonOk_Click(sender, e);
