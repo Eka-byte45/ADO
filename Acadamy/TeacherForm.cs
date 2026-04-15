@@ -38,14 +38,5 @@ namespace Acadamy
 			}
 		}
 
-
-
-
-
-
-		private void dtpWorkScines_ValueChanged(object sender, EventArgs e)
-		{
-
-		}
 	}
 }

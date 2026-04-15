@@ -12,15 +12,15 @@ namespace Acadamy
 {
 	public partial class HumanForm : Form
 	{
-		internal Models.Human human;
-		//static protected DBtools.Connector connector;
+		internal Models.Human human;//Здесь объявляется поле. Это главный объект, с которым работает форма. Форма «знает» об одном конкретном объекте класса Human и отображает его данные на экране.
+									//static protected DBtools.Connector connector;
 		protected HumanForm()
 		{
 			InitializeComponent();
 			//connector = new DBtools.Connector(ConfigurationManager.ConnectionStrings["PV_521_Import"].ConnectionString);
 			
 		}
-		protected void Extract()
+		protected void Extract()// Этот метод берёт данные из объекта human и «вписывает» их в соответствующие поля на форме.
 		{
 			if (human != null)
 			{
@@ -34,7 +34,7 @@ namespace Acadamy
 			}
 		}
 		
-		protected virtual void buttonOk_Click(object sender, EventArgs e) 
+		protected virtual void buttonOk_Click(object sender, EventArgs e) //Этот метод срабатывает, когда пользователь нажимает кнопку «ОК». Он берёт всё, что пользователь ввёл в поля на форме, и создаёт новый объект Human.
 		{ 
 			human = new Models.Human
 			(
@@ -51,10 +51,10 @@ namespace Acadamy
 
 		private void buttonbrowse_Click(object sender, EventArgs e)
 		{
-			OpenFileDialog dialog = new OpenFileDialog();
-			dialog.Filter = "JPG files (*.jpg)|*.jpg|PNG fiels (*.png)|*.png|All image files|*.png;*.jpg|ALL files (*.*)|*.*";
-			if(dialog.ShowDialog() == DialogResult.OK)
-				pbPhoto.Image = Image.FromFile(dialog.FileName);
+			OpenFileDialog dialog = new OpenFileDialog();//Это системный компонент для выбора файла.
+			dialog.Filter = "JPG files (*.jpg)|*.jpg|PNG fiels (*.png)|*.png|All image files|*.png;*.jpg|ALL files (*.*)|*.*";//Настраивает фильтр, чтобы в окне отображались только картинки (JPG, PNG).
+			if (dialog.ShowDialog() == DialogResult.OK)
+				pbPhoto.Image = Image.FromFile(dialog.FileName);//Загружает выбранный файл с диска и превращает его в объект Image, который потом можно сохранить в базу данных.
 		}
 	}
 }

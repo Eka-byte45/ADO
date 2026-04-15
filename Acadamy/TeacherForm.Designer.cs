@@ -43,7 +43,6 @@
 			this.dtpWorkSince.Name = "dtpWorkSince";
 			this.dtpWorkSince.Size = new System.Drawing.Size(200, 31);
 			this.dtpWorkSince.TabIndex = 17;
-			this.dtpWorkSince.ValueChanged += new System.EventHandler(this.dtpWorkScines_ValueChanged);
 			// 
 			// tbRate
 			// 

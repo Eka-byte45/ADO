@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Acadamy
 {
-	public partial class StudentForm : HumanForm
+	public partial class StudentForm : HumanForm//StudentForm наследует все от HumanForm
 	{
 		Models.Student student;
 		public StudentForm()
@@ -30,22 +30,23 @@ namespace Acadamy
 			cbGroup.DisplayMember = "group_name";
 			cbGroup.ValueMember = "group_id";
 		}
-		public StudentForm(int id):this()
+		public StudentForm(int id):this()//редактирование существующего студента
 		{
-			DataTable data = DataBase.Connector.Select("*", "Students", $"stud_id ={id}");
+			DataTable data = DataBase.Connector.Select("*", "Students", $"stud_id ={id}");//запрос в базу данных и находим студента с конкретным id
 			//object[] arr = data.Rows[0].ItemArray;
-			student = new Models.Student(data.Rows[0].ItemArray);
-			human = student;
+			student = new Models.Student(data.Rows[0].ItemArray);//создаем объект student, который принимает массив данных
+			human = student;//студент это тот же человек
 			Extract();
-			cbGroup.SelectedValue = student.group;
-			pbPhoto.Image = DataBase.Connector.DownladPhoto("Students","photo",student.id);
+			cbGroup.SelectedValue = student.group;//выбираем группу в выпадающем списке, которая принадлежит этому студенту
+			pbPhoto.Image = DataBase.Connector.DownladPhoto("Students","photo",student.id);//загружаем фото из БД в картинку на форме
 			
 		}
-		protected override void buttonOk_Click(object sender, EventArgs e)
+		protected override void buttonOk_Click(object sender, EventArgs e)//переопределяем метод из родительского класса Human
 		{
 			base.buttonOk_Click(sender, e);
-			student = new Models.Student(human,Convert.ToInt32(cbGroup.SelectedValue));
+			student = new Models.Student(human,Convert.ToInt32(cbGroup.SelectedValue));//создаем объект студент, добавляем к нему id группы из comboBox
 			//object id = (int)DataBase.Connector.Scalar($"SELECT stud_id FROM Students WHERE {student.GetCondition()}");
+			//решаем создаем нового студента или обновляем старого
 			if(student.id==0)student.id =Convert.ToInt32(DataBase.Connector.Scalar
 				(
 				$"INSERT Students({student.GetNames()}) VALUES ({student.GetValues()});SELECT SCOPE_IDENTITY()")
@@ -58,7 +59,7 @@ namespace Acadamy
 				//	(
 				//	"$SELECT stud_id FROM Students WHERE {student.GetCondition()}"
 				//	);
-				DataBase.Connector.UploadPhoto(student.SerializePhoto(), student.id, "photo", "Students");
+				DataBase.Connector.UploadPhoto(student.SerializePhoto(), student.id, "photo", "Students");//сохраняем фото, если оно выбрано
 			}
 			//try
 			//{

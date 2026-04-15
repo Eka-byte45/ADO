@@ -124,14 +124,6 @@ namespace Acadamy
 				tabControl_SelectedIndexChanged(tabControl, null);
 			}
 		}
-
-
-
-
-
-
-
-
-		
+	
 	}
 }

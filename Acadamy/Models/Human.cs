@@ -10,6 +10,7 @@ namespace Acadamy.Models
 {
 	internal class Human
 	{
+		//объявляем поля, которые internal, то есть используются только в этой сборке
 		internal int id;
 		internal string last_name;
 		internal string first_name;
@@ -18,7 +19,7 @@ namespace Acadamy.Models
 		internal string email;
 		internal string phone;
 		internal Image photo;
-		public Human(int id,string last_name, string first_name, string middle_name, string birth_date, string email, string phone, Image photo)
+		public Human(int id,string last_name, string first_name, string middle_name, string birth_date, string email, string phone, Image photo)//Полный конструктор
 		{
 			this.id = id;
 			this.last_name = last_name;
@@ -29,7 +30,7 @@ namespace Acadamy.Models
 			this.phone = phone;
 			this.photo = photo;
 		}
-		public Human(Human other)
+		public Human(Human other)//Конструктор копирования,позволяет создать точную копию уже существующего объекта
 		{
 			this.id = other.id;
 			this.last_name=other.last_name;
@@ -40,7 +41,7 @@ namespace Acadamy.Models
 			this.phone=other.phone;
 			this.photo=other.photo;
 		}
-		public Human(object[] values)
+		public Human(object[] values)//конструктор из массива для работы с Бд, когда делаем запрос к БД получаем результат в виде массива объектов, данный конструктор позволяет превратить одной строчкой кода превратить этот массив в полноценный объект Human
 		{
 			this.id = Convert.ToInt32(values[0]);
 			this.last_name = values[1].ToString();
@@ -50,22 +51,22 @@ namespace Acadamy.Models
 			this.email = values[5].ToString();
 			this.phone = values[6].ToString();
 		}
-		public byte[] SerializePhoto()
+		public byte[] SerializePhoto()//Метод для работы с фотографией. Этот метод берёт объект Image (картинку в памяти) и превращает его обратно в массив байтов (byte[]).
 		{
 			if(photo == null) return null;
 			MemoryStream ms = new MemoryStream();
 			photo.Save(ms,photo.RawFormat);
 			return ms.ToArray();
 		}
-		public virtual string GetNames()
+		public virtual string GetNames()//Возвращает строку с именами колонок
 		{
 			return $"last_name,first_name,middle_name,birth_date,email,phone";
 		}
-		public virtual string GetValues()
+		public virtual string GetValues()//Возвращает строку со значениями
 		{
 			return $"N'{last_name}',N'{first_name}',N'{middle_name}',N'{birth_date}',N'{email}',N'{phone}'";
 		}
-		public virtual string GetCondition()
+		public virtual string GetCondition()//Возвращает строку с условиями для поиска
 		{
 			return $"last_name = N'{last_name}' AND first_name =N' {first_name}' AND middle_name = N'{middle_name}' AND birth_date = N'{birth_date}' AND email = N'{email}' AND phone =N'{phone}'";
 		}
