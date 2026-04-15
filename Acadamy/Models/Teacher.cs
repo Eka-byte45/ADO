@@ -52,7 +52,8 @@ namespace Acadamy.Models
 
 		public override string GetCondition()
 		{
-			return base.GetCondition()+$" AND work_since=N'{work_since}' AND rate={rate}";
+			//return base.GetCondition()+$" AND work_since=N'{work_since}' AND rate={rate}";
+			return base.GetCondition() + $" AND work_since=N'{work_since}' AND rate={rate.ToString().Replace(",",".")}";
 		}
 
 		//public string GetUpdateString()
