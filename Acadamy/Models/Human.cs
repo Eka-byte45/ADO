@@ -27,7 +27,7 @@ namespace Acadamy.Models
 			this.middle_name = middle_name;
 			this.birth_date = birth_date;
 			this.email = email;
-			this.phone = phone;
+			this.phone = string.IsNullOrWhiteSpace(phone) ? "" : phone;
 			this.photo = photo;
 		}
 		public Human(Human other)//Конструктор копирования,позволяет создать точную копию уже существующего объекта
@@ -49,7 +49,7 @@ namespace Acadamy.Models
 			this.middle_name = values[3].ToString();
 			this.birth_date = values[4].ToString();
 			this.email = values[5].ToString();
-			this.phone = values[6].ToString();
+			this.phone = string.IsNullOrWhiteSpace(values[6].ToString()) ? "" : values[6].ToString();
 		}
 		public byte[] SerializePhoto()//Метод для работы с фотографией. Этот метод берёт объект Image (картинку в памяти) и превращает его обратно в массив байтов (byte[]).
 		{

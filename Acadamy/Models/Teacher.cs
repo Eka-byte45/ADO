@@ -37,7 +37,7 @@ namespace Acadamy.Models
 		public Teacher(object[] values): base(values)
 		{
 			this.work_since = values[8].ToString();
-			this.rate = Convert.ToDecimal(values[9]);
+			this.rate = Convert.ToDecimal(values[9].ToString().Split(',').First());
 		}
 
 		public override string GetNames()
